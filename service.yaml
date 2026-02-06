@@ -3,20 +3,14 @@ kind: Service
 metadata:
   name: svc-nginx
   annotations:
+    # NLB 타입을 유지하여 빠른 성능과 고정 IP 기반 운영 가능하게 설정
     service.beta.kubernetes.io/aws-load-balancer-type: "nlb"
-    service.beta.kubernetes.io/aws-load-balancer-backend-protocol: tcp
-    service.beta.kubernetes.io/aws-load-balancer-ssl-ports: "443"
-    service.beta.kubernetes.io/aws-load-balancer-ssl-cert: arn:aws:acm:ap-northeast-2:620758375333:certificate/93630df3-7db2-4b06-8832-bdb2f04b8ff7
 spec:
   selector:
     app: eks-nginx
   ports:
-  - name: http
-    protocol: TCP
-    port: 80
-    targetPort: 80
-  - name: https
-    protocol: TCP
-    port: 443
-    targetPort: 80
+    - name: http
+      protocol: TCP
+      port: 80 # 외부에서 접속할 포트
+      targetPort: 80 # Nginx 컨테이너 내부 포트
   type: LoadBalancer
