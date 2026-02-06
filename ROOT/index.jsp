@@ -140,7 +140,7 @@ response.setCharacterEncoding("UTF-8");
 
         .btn {
             display: inline-block;
-            background: linear-gradient(45deg, #667eea, #764ba2);
+            background: linear-gradient(135deg, #2c3e50 0%, #000000 100%);
             color: white;
             padding: 15px 30px;
             font-size: 18px;
